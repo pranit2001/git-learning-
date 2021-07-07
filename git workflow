@@ -1,1 +1,101 @@
 
+
+1. Basic Git Workflow
+The most basic git workflow is the one where there is only one branch — the master branch. Developers commit directly into it and use it to deploy to the staging and production environment.
+
+Basic Git Workflow
+Basic Git Workflow with all commits getting added directly to master branch
+This workflow isn’t usually recommended unless you’re working on a side project and you’re looking to get started quickly.
+
+Since there is only one branch, there really is no process over here. This makes it effortless to get started with Git. However, some cons you need to keep in mind when using this workflow are:
+
+Collaborating on code will lead to multiple conflicts.
+Chances of shipping buggy software to production is higher.
+Maintaining clean code is harder.
+
+
+
+2. Git Feature Branch Workflow
+The Git Feature Branch workflow becomes a must have when you have more than one developer working on the same codebase.
+
+Imagine you have one developer who is working on a new feature. And another developer working on a second feature. Now, if both the developers work from the same branch and add commits to them, it would make the codebase a huge mess with plenty of conflicts.
+
+Git feature branch workflow
+Git workflow with feature branches
+To avoid this, the two developers can create two separate branches from the master branch and work on their features individually. When they’re done with their feature, they can then merge their respective branch to the master branch, and deploy without having to wait for the second feature to be completed.
+
+The Pros of using this workflow is, the git feature branch workflow allows you to collaborate on code without having to worry about code conflicts.
+
+
+
+
+
+3. Git Feature Workflow with Develop Branch
+This workflow is one of the more popular workflows among developer teams. It’s similar to the Git Feature Branch workflow with a develop branch that is added in parallel to the master branch.
+
+In this workflow, the master branch always reflects a production-ready state. Whenever the team wants to deploy to production they deploy it from the master branch.
+
+The develop branch reflects the state with the latest development changes for the next release. Developers create branches from the develop branch and work on new features. Once the feature is ready, it is tested, merged with develop branch, tested with the develop branch’s code in case there was a prior merge, and then merged with master.
+
+Git workflow with feature and develop branches
+Git workflow with feature and develop branches
+The advantage of this workflow is, it allows teams to consistently merge new features, test them in staging, and deploy to production. While maintaining code is easier, it can get a little tiresome for some teams since it can feel like going through a tedious process.
+
+
+
+
+4. Gitflow Workflow
+The gitflow workflow is very similar to the previous workflow we discussed combined with two other branches — the release branch and the hot-fix branch.
+
+The hot-fix branch
+The hot-fix branch is the only branch that is created from the master branch and directly merged to the master branch instead of the develop branch. It is used only when you have to quickly patch a production issue. An advantage of this branch is, it allows you to quickly deploy a production issue without disrupting others’ workflow or without having to wait for the next release cycle.
+
+Once the fix is merged into the master branch and deployed, it should be merged into both develop and the current release branch. This is done to ensure that anyone who forks off develop to create a new feature branch has the latest code.
+
+The release branch
+The release branch is forked off of develop branch after the develop branch has all the features planned for the release merged into it successfully.
+
+No code related to new features is added into the release branch. Only code that relates the release is added to the release branch. For example, documentation, bug fixes, and other tasks related to this release are added to this branch.
+
+Once this branch is merged with master and deployed to production, it’s also merged back into the develop branch, so that when a new feature is forked off of develop, it has the latest code.
+
+Gitflow workflow
+Gitflow workflow with hotfix and release branches
+This workflow was first published and made popular by Vincent Driessen and since then it has been widely used by organizations that have a scheduled release cycle.
+
+Since the git-flow is a wrapper around Git, you can install git-flow in your current repository. It's a straightforward process and it doesn't change anything in your repository other than creating branches for you.
+
+To install on a Mac machine, execute brew install git-flow in your terminal.
+
+To install on a Windows machine, you'll need to download and install the git-flow. After the installation is done, run the following Git Command git flow init to use it in your project.
+
+
+
+
+
+5. Git Fork Workflow
+The Fork workflow is popular among teams who use open-source software.
+
+The flow usually looks like this:
+
+The developer forks the open-source software’s official repository. A copy of this repository is created in their account.
+The developer then clones the repository from their account to their local system.
+A remote path for the official repository is added to the repository that is cloned to the local system.
+The developer creates a new feature branch is created in their local system, makes changes, and commits them.
+These changes along with the branch are pushed to the developer’s copy of the repository on their account.
+A pull request from the branch is opened to the official repository.
+The official repository’s manager checks the changes and approves the changes to get merged into the official repository.
+Automating your Git Workflows and Branching Strategy for better productivity
+One of the things that developers have to constantly juggle with is updating their project management tool to keep their teammates updated. That’s why, at Zepel, our developers automate their workflow, so they can spend more of their time building the software.
+
+Here’s how we automate our git workflow to keep everyone in sync:
+
+Developer Workflow with GitHub, Zepel, and Slack Integrations
+A simple flowchart of how developer workflow is automated with GitHub, Zepel, and Slack
+While Zepel integrates deeply with GitHub, Bitbucket, and GitLab, we use GitHub internally. So, once we’ve integrated GitHub with Zepel, our development team sets up the git workflow automation within Zepel. Here’s how it looks today:
+
+Git workflow automation
+Automating Zepel to update statuses based on Git workflow.
+As developers continue to make progress, our team automatically gets a Slack notification and their changes are recorded within the user story.
+
+Git workflow updates to user story in real-time
